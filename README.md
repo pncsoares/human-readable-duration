@@ -51,7 +51,19 @@ Go to the project directory
     ```
     node src/Index.js
     ```
-    
+1. If you want to use other languages, you just need to change the `undefined` value to `'pt-pt'`, `'es-sp'`, `'fr-fr'`, `'de-de'`, etc.
+    ```bash
+    # example to english
+    const relativeDateFormatter = new Intl.RelativeTimeFormat(undefined, {
+        numeric: 'auto'
+    });
+
+    # example to portuguese
+    const relativeDateFormatter = new Intl.RelativeTimeFormat('pt-pt', {
+        numeric: 'auto'
+    });
+    ```
+
 # License
 
 MIT
