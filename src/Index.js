@@ -12,6 +12,34 @@ const relativeDateFormatter = new Intl.RelativeTimeFormat(undefined, {
     numeric: 'auto'
 });
 
+function calculateDatesDuration() {
+    const startDate = findHtmlElementAndGetItsValue('start');
+    const endDate = findHtmlElementAndGetItsValue('end');
+
+    const startDateFormatted = transformDateToDateUsFormat(startDate);
+    const endDateFormatted = transformDateToDateUsFormat(endDate);
+
+    const duration = formatRelativeDate(startDateFormatted, endDateFormatted);
+    showDuration(duration);
+}
+
+function findHtmlElementAndGetItsValue(elementId) {
+    const element = getHtmlElementById(elementId);
+    return getElementValue(element);
+}
+
+function getHtmlElementById(elementId) {
+    return document.getElementById(elementId);
+}
+
+function getElementValue(element) {
+    return element.value;
+}
+
+function transformDateToDateUsFormat(date) {
+    return new Date(date);
+}
+
 function formatRelativeDate(toDate, fromDate = new Date()) {
     let duration = (toDate - fromDate) / 1000;
 
@@ -25,4 +53,9 @@ function formatRelativeDate(toDate, fromDate = new Date()) {
 
         duration /= division.amount;
     }
+}
+
+function showDuration(duration) {
+    const durationLabel = getHtmlElementById('duration');
+    durationLabel.innerText = duration;
 }
