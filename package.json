@@ -1,0 +1,20 @@
+{
+  "name": "human-readable-duration",
+  "version": "1.0.0",
+  "description": "Duration in a way that humans can read and understand 🕐",
+  "main": "./src/Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pncsoares/human-readable-duration.git"
+  },
+  "keywords": ["duration", "human-readable"],
+  "author": "Pedro Soares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pncsoares/human-readable-duration/issues"
+  },
+  "homepage": "https://github.com/pncsoares/human-readable-duration#readme"
+}
