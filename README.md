@@ -1,6 +1,6 @@
 # Human Readable Duration
 
-Duration in a way that humans can read and understand 🕐
+Relation between dates in a way that humans can read and understand 🕐
 
 ![application](./images/app.png)
 
