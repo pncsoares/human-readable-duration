@@ -9,14 +9,19 @@ const divisions = [
 ];
 
 function calculateDatesDuration() {
-    const startDate = findHtmlElementAndGetItsValue('start');
-    const endDate = findHtmlElementAndGetItsValue('end');
+    try {
+        const startDate = findHtmlElementAndGetItsValue('start');
+        const endDate = findHtmlElementAndGetItsValue('end');
 
-    const startDateFormatted = transformDateToDateUsFormat(startDate);
-    const endDateFormatted = transformDateToDateUsFormat(endDate);
+        const startDateFormatted = transformDateToDateUsFormat(startDate);
+        const endDateFormatted = transformDateToDateUsFormat(endDate);
 
-    const duration = formatRelativeDate(startDateFormatted, endDateFormatted);
-    showDuration(duration);
+        const duration = formatRelativeDate(startDateFormatted, endDateFormatted);
+        showDuration(duration);
+    }
+    catch (e) {
+        alert(e);
+    }
 }
 
 function findHtmlElementAndGetItsValue(elementId) {
@@ -33,6 +38,10 @@ function getElementValue(element) {
 }
 
 function transformDateToDateUsFormat(date) {
+    if (!date) {
+        throw new Error('You must chose a valid date!');
+    }
+
     return new Date(date);
 }
 
