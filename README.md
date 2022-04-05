@@ -6,11 +6,15 @@ Relation between dates in a way that humans can read and understand 🕐
 
 You can choose multiple languages 👇
 
-![application](./images/choose-language.png)
+![choose language](./images/choose-language.png)
 
 And then, check the result
 
-![application](./images/result.png)
+![result](./images/result.png)
+
+You can also calculate with times 😱
+
+![result with times](./images/result-with-times.png)
 
 # Technologies
 

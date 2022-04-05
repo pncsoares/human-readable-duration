@@ -8,13 +8,36 @@ const divisions = [
     { amount: Number.POSITIVE_INFINITY, name: 'years' }
 ];
 
+let useTime = true;
+
+function toggleTime() {
+    const timeCheckbox = getHtmlElementById('checkbox-time');
+
+    const startTime = getHtmlElementById('start-time');
+    const endTime = getHtmlElementById('end-time');
+
+    if (timeCheckbox.checked) {
+        useTime = true;
+        startTime.style.visibility = 'visible';
+        endTime.style.visibility = 'visible';
+    }
+    else {
+        useTime = false;
+        startTime.style.visibility = 'hidden';
+        endTime.style.visibility = 'hidden';
+    }
+}
+
 function calculateDatesDuration() {
     try {
-        const startDate = findHtmlElementAndGetItsValue('start');
-        const endDate = findHtmlElementAndGetItsValue('end');
+        const startDate = findHtmlElementAndGetItsValue('start-date');
+        const endDate = findHtmlElementAndGetItsValue('end-date');
 
-        const startDateFormatted = transformDateToDateUsFormat(startDate);
-        const endDateFormatted = transformDateToDateUsFormat(endDate);
+        const startTime = findHtmlElementAndGetItsValue('start-time');
+        const endTime = findHtmlElementAndGetItsValue('end-time');
+
+        const startDateFormatted = transformDateToDateUsFormat(startDate, startTime);
+        const endDateFormatted = transformDateToDateUsFormat(endDate, endTime);
 
         const duration = formatRelativeDate(startDateFormatted, endDateFormatted);
         showDuration(duration);
@@ -37,12 +60,28 @@ function getElementValue(element) {
     return element.value;
 }
 
-function transformDateToDateUsFormat(date) {
+function transformDateToDateUsFormat(date, time) {
     if (!date) {
         throw new Error('You must chose a valid date!');
     }
 
-    return new Date(date);
+    if (useTime && !time) {
+        throw new Error('You must chose a valid time!');
+    }
+
+    const newDate = new Date(date);
+
+    if (useTime) {
+        const hour = Number(time.split(':')[0]);
+        newDate.setHours(hour);
+
+        const minute = Number(time.split(':')[1]);
+        newDate.setMinutes(minute);
+
+        return newDate;
+    }
+
+    return newDate;
 }
 
 function formatRelativeDate(toDate, fromDate = new Date()) {
