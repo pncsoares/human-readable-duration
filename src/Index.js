@@ -8,10 +8,6 @@ const divisions = [
     { amount: Number.POSITIVE_INFINITY, name: 'years' }
 ];
 
-const relativeDateFormatter = new Intl.RelativeTimeFormat(undefined, {
-    numeric: 'auto'
-});
-
 function calculateDatesDuration() {
     const startDate = findHtmlElementAndGetItsValue('start');
     const endDate = findHtmlElementAndGetItsValue('end');
@@ -42,6 +38,12 @@ function transformDateToDateUsFormat(date) {
 
 function formatRelativeDate(toDate, fromDate = new Date()) {
     let duration = (toDate - fromDate) / 1000;
+
+    const language = findHtmlElementAndGetItsValue('language');
+
+    const relativeDateFormatter = new Intl.RelativeTimeFormat(language, {
+        numeric: 'auto'
+    });
 
     for (let i = 0; i <= divisions.length; i++) {
         const division = divisions[i];
